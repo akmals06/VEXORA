@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build and generated artifacts
+dist/
+build/
+.next/
+out/
+coverage/
+packages/database/src/generated/
+
+# Turborepo
+.turbo/
+
+# Environment variables (never commit real secrets)
+.env
+.env.*
+!.env.example
+
+# Logs and runtime data
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Editor, OS, and local agent/internal documentation files
+.DS_Store
+Thumbs.db
+*.swp
+*.tsbuildinfo
+next-env.d.ts
+.agents/
+.agent/
+AGENTS.md
+CLAUDE.md
+skills-lock.json
+VOXERA_PRODUCT_FOUNDATION.md
+docs/
+

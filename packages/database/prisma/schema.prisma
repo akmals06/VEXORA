@@ -1,0 +1,75 @@
+// VOXERA — Authoritative Prisma Schema (Phase 2.5 Reconciled Lightweight Option B)
+// Stores ONLY minimal non-sensitive structured continuity data:
+// - account identity required for optional continuity (`Pengguna`, `SesiPengguna`)
+// - saved structured Support Journey reference (`PerjalananTersimpan`)
+// - structured follow-up step state (`LangkahTindakLanjut`)
+// Zero free-text psychological notes, conversation drafts, or incident narratives are persisted.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Pengguna {
+  id_pengguna     String   @id @default(uuid()) @db.Uuid
+  email           String   @unique
+  nama_alias      String
+  hash_kata_sandi String
+  dibuat_pada     DateTime @default(now())
+  diperbarui_pada DateTime @updatedAt
+
+  daftar_sesi       SesiPengguna[]
+  daftar_perjalanan PerjalananTersimpan[]
+
+  @@map("pengguna")
+}
+
+model SesiPengguna {
+  id_sesi          String   @id @default(uuid()) @db.Uuid
+  id_pengguna      String   @db.Uuid
+  hash_token       String   @unique
+  kedaluwarsa_pada DateTime
+  dibuat_pada      DateTime @default(now())
+
+  pengguna Pengguna @relation(fields: [id_pengguna], references: [id_pengguna], onDelete: Cascade)
+
+  @@index([id_pengguna])
+  @@map("sesi_pengguna")
+}
+
+model PerjalananTersimpan {
+  id_perjalanan        String   @id @default(uuid()) @db.Uuid
+  id_pengguna          String   @db.Uuid
+  id_masalah_utama     String
+  id_subkategori       String
+  kelas_hasil_utama    String
+  jalur_dukungan_utama String
+  status_perjalanan    String   @default("aktif")
+  dibuat_pada          DateTime @default(now())
+  diperbarui_pada      DateTime @updatedAt
+
+  pengguna       Pengguna              @relation(fields: [id_pengguna], references: [id_pengguna], onDelete: Cascade)
+  daftar_langkah LangkahTindakLanjut[]
+
+  @@index([id_pengguna, dibuat_pada])
+  @@map("perjalanan_tersimpan")
+}
+
+model LangkahTindakLanjut {
+  id_langkah       String   @id @default(uuid()) @db.Uuid
+  id_perjalanan    String   @db.Uuid
+  urutan_langkah   Int
+  kode_langkah     String
+  id_tipe_dukungan String
+  status_langkah   String   @default("belum_dimulai")
+  diperbarui_pada  DateTime @updatedAt
+
+  perjalanan PerjalananTersimpan @relation(fields: [id_perjalanan], references: [id_perjalanan], onDelete: Cascade)
+
+  @@index([id_perjalanan, urutan_langkah])
+  @@map("langkah_tindak_lanjut")
+}

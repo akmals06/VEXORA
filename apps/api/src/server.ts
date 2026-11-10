@@ -6,7 +6,7 @@ import { pencatat_log } from "./lib/logger.js";
 const aplikasi = buat_aplikasi();
 
 const server_http: Server = aplikasi.listen(konfigurasi_env.PORT, () => {
-  pencatat_log.info("Server VOXERA API berhasil dijalankan", {
+  pencatat_log.info("Server VEXORA API berhasil dijalankan", {
     port: konfigurasi_env.PORT,
     lingkungan: konfigurasi_env.NODE_ENV,
     endpoint_kesehatan: `http://localhost:${konfigurasi_env.PORT}/api/v1/health`,

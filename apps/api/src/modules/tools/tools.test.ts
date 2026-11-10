@@ -9,7 +9,7 @@ import request from "supertest";
 import { describe, expect, it } from "vitest";
 import { buat_aplikasi } from "../../app.js";
 
-describe("Modul Alat Bantu Interaktif — VOXERA Phase 4", () => {
+describe("Modul Alat Bantu Interaktif — VEXORA Phase 4", () => {
   const aplikasi: Express = buat_aplikasi();
 
   describe("POST /api/v1/tools/conversation-prep", () => {

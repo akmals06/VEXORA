@@ -24,7 +24,7 @@ export function SaveBoundaryCard({ ringkas = false }: PropertiSaveBoundaryCard) 
             </h3>
             {!ringkas ? (
               <p className="mt-0.5 text-xs leading-relaxed text-[var(--vx-text-secondary)]">
-                Seluruh eksplorasi VOXERA berjalan di peramban Anda secara bawaan. Akun opsional
+                Seluruh eksplorasi VEXORA berjalan di peramban Anda secara bawaan. Akun opsional
                 hanya menyimpan ringkasan kode jalur dan langkah tindak lanjut terstruktur.
               </p>
             ) : null}

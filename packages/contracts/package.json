@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Shared API request/response validation schemas and DTO types for VOXERA",
+  "description": "Shared API request/response validation schemas and DTO types for VEXORA",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {

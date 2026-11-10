@@ -1,14 +1,14 @@
-# VOXERA
+# VEXORA
 
 **Platform Perlindungan Pekerja dan Kesejahteraan Psikososial di Tempat Kerja**
 
-VOXERA adalah platform web interdisipliner yang dikembangkan sebagai Proyek Akhir kolaboratif lintas bidang ilmu (**Psikologi Kerja, Ilmu Komputer/Informatika, Hukum Ketenagakerjaan, serta Ekonomi & Bisnis**). Platform ini membantu pekerja memahami situasi kerja yang mereka hadapi, mengenali hak normatif ketenagakerjaan, menavigasi jalur dukungan yang aman, serta mempersiapkan komunikasi profesional tanpa harus langsung membuat akun.
+VEXORA adalah platform web interdisipliner yang dikembangkan sebagai Proyek Akhir kolaboratif lintas bidang ilmu (**Psikologi Kerja, Ilmu Komputer/Informatika, Hukum Ketenagakerjaan, serta Ekonomi & Bisnis**). Platform ini membantu pekerja memahami situasi kerja yang mereka hadapi, mengenali hak normatif ketenagakerjaan, menavigasi jalur dukungan yang aman, serta mempersiapkan komunikasi profesional tanpa harus langsung membuat akun.
 
 ---
 
 ## Struktur Monorepo
 
-VOXERA dibangun menggunakan arsitektur **modular monorepo** berbasis **pnpm Workspaces** dan **Turborepo**:
+VEXORA dibangun menggunakan arsitektur **modular monorepo** berbasis **pnpm Workspaces** dan **Turborepo**:
 
 ```text
 .

@@ -5,7 +5,7 @@ import { AppProviders } from "@/providers/app-providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "VOXERA: Platform Perlindungan & Kesejahteraan Psikososial Pekerja",
+  title: "VEXORA: Platform Perlindungan & Kesejahteraan Psikososial Pekerja",
   description:
     "Navigasi masalah kerja berfokus solusi, persiapan percakapan terstruktur, literasi hak ketenagakerjaan, dan dukungan psikologis non-klinis.",
 };

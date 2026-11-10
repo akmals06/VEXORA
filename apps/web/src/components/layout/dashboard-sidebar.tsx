@@ -31,7 +31,7 @@ export function DashboardSidebar() {
           </p>
         </div>
 
-        <nav aria-label="Menu modul VOXERA" className="space-y-1">
+        <nav aria-label="Menu modul VEXORA" className="space-y-1">
           {DAFTAR_TAUTAN_NAVIGASI.map((item) => {
             const aktif = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
 

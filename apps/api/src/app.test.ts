@@ -3,7 +3,7 @@ import request from "supertest";
 import { describe, expect, it } from "vitest";
 import { buat_aplikasi } from "./app.js";
 
-describe("VOXERA API — Phase 0 Foundation", () => {
+describe("VEXORA API — Phase 0 Foundation", () => {
   const aplikasi = buat_aplikasi();
 
   it("GET /api/v1/health mengembalikan HTTP 200 dan memenuhi kontrak skema", async () => {

@@ -6,7 +6,7 @@ import { buat_pembatas_laju_autentikasi } from "../../middlewares/rate-limit.mid
 import { RepositoriAutentikasiMemori } from "./auth.repository.js";
 import { LayananAutentikasi } from "./auth.service.js";
 
-describe("Modul Autentikasi — VOXERA Phase 4", () => {
+describe("Modul Autentikasi — VEXORA Phase 4", () => {
   let repositori_memori: RepositoriAutentikasiMemori;
   let layanan_autentikasi: LayananAutentikasi;
   let aplikasi: Express;

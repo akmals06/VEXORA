@@ -49,7 +49,7 @@ interface PropertiIkon extends SVGProps<SVGSVGElement> {
 }
 
 /**
- * Satu sistem ikon garis (1.8px stroke) terpadu untuk seluruh antarmuka VOXERA.
+ * Satu sistem ikon garis (1.8px stroke) terpadu untuk seluruh antarmuka VEXORA.
  * Bebas dari emoji, simbol medis, detak jantung, maupun grafis DNA.
  */
 export function Icon({ nama, name, ukuran, size, className = "", ...props }: PropertiIkon) {

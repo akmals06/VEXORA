@@ -8,7 +8,7 @@ import request from "supertest";
 import { describe, expect, it } from "vitest";
 import { buat_aplikasi } from "../../app.js";
 
-describe("Modul Navigator — VOXERA Phase 4", () => {
+describe("Modul Navigator — VEXORA Phase 4", () => {
   const aplikasi: Express = buat_aplikasi();
 
   describe("GET /api/v1/navigator/catalog", () => {

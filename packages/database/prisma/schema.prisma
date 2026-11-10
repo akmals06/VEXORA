@@ -1,4 +1,4 @@
-// VOXERA — Authoritative Prisma Schema (Phase 2.5 Reconciled Lightweight Option B)
+// VEXORA — Authoritative Prisma Schema (Phase 2.5 Reconciled Lightweight Option B)
 // Stores ONLY minimal non-sensitive structured continuity data:
 // - account identity required for optional continuity (`Pengguna`, `SesiPengguna`)
 // - saved structured Support Journey reference (`PerjalananTersimpan`)

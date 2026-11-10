@@ -23,6 +23,7 @@ import {
 
 export type StatusAutentikasiKlien = "memuat" | "terautentikasi" | "tamu";
 export type ModeTemaTampilan = "terang" | "gelap";
+const KUNCI_PENYIMPANAN_TEMA = "voxera-mode-tema";
 
 interface NilaiKonteksAplikasi {
   sesi_lokal: StateSesiLokal;
@@ -56,6 +57,17 @@ export function AppProviders({ children }: PropertiPenyediaAplikasi) {
   const [pengguna, atur_pengguna] = useState<ProfilPengguna | null>(null);
   const [status_autentikasi, atur_status_autentikasi] = useState<StatusAutentikasiKlien>("memuat");
   const [mode_tema, atur_mode_tema] = useState<ModeTemaTampilan>("terang");
+  const [tema_sudah_dihidrasi, atur_tema_sudah_dihidrasi] = useState<boolean>(false);
+
+  useEffect(() => {
+    const navigasi = performance.getEntriesByType("navigation")[0] as
+      | PerformanceNavigationTiming
+      | undefined;
+
+    if (navigasi?.type === "reload" && window.location.pathname !== "/") {
+      window.location.replace("/");
+    }
+  }, []);
 
   const sinkronkan_dari_storage = useCallback(() => {
     atur_sesi_lokal(baca_sesi_lokal());
@@ -75,7 +87,7 @@ export function AppProviders({ children }: PropertiPenyediaAplikasi) {
   }, []);
 
   useEffect(() => {
-    sinkronkan_dari_storage();
+    hapus_sesi_lokal();
     atur_sudah_dihidrasi(true);
 
     const penangan_perubahan = () => {
@@ -94,6 +106,17 @@ export function AppProviders({ children }: PropertiPenyediaAplikasi) {
   }, [segar_ulang_sesi_auth, sinkronkan_dari_storage]);
 
   useEffect(() => {
+    const tema_tersimpan = window.localStorage.getItem(KUNCI_PENYIMPANAN_TEMA);
+    if (tema_tersimpan === "terang" || tema_tersimpan === "gelap") {
+      atur_mode_tema(tema_tersimpan);
+    }
+    atur_tema_sudah_dihidrasi(true);
+  }, []);
+
+  useEffect(() => {
+    if (!tema_sudah_dihidrasi) {
+      return;
+    }
     if (typeof document !== "undefined") {
       const elemen_html = document.documentElement;
       if (mode_tema === "gelap") {
@@ -101,8 +124,9 @@ export function AppProviders({ children }: PropertiPenyediaAplikasi) {
       } else {
         elemen_html.classList.remove("dark");
       }
+      window.localStorage.setItem(KUNCI_PENYIMPANAN_TEMA, mode_tema);
     }
-  }, [mode_tema]);
+  }, [mode_tema, tema_sudah_dihidrasi]);
 
   const perbarui_sesi_lokal = useCallback(
     (

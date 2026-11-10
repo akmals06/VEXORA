@@ -280,7 +280,7 @@ export const PETA_LABEL_LAPISAN_BATAS: Record<PsychologicalBoundaryLayer, string
   psychological_screening_early_indication: "Lapisan 2: Skrining Indikasi Awal (Opsional)",
   non_clinical_psychological_support: "Lapisan 3: Dukungan Psikologis Non-Klinis",
   qualified_professional_assessment: "Lapisan 4: Asesmen Profesional Berkualifikasi",
-  clinical_diagnosis_never_by_voxera: "Lapisan 5: Diagnosis Klinis (Tidak Pernah oleh VOXERA)",
+  clinical_diagnosis_never_by_voxera: "Lapisan 5: Diagnosis Klinis (Tidak Pernah oleh VEXORA)",
 };
 
 export const PETA_LABEL_ALASAN_RUJUKAN: Record<ProfessionalReferralReason, string> = {

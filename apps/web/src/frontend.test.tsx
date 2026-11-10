@@ -105,7 +105,7 @@ const CONTOH_PERJALANAN_AKTIF: PerjalananDukungan = {
     penjelasan_peran_konselor_psikolog:
       "Konselor dapat membantu pemetaan masalah dan strategi koping adaptif jangka pendek, sedangkan Psikolog dapat memberikan asesmen dan intervensi psikologis profesional sesuai kompetensi, kualifikasi, dan ruang lingkup praktiknya. Fungsi tiap kanal profesional dapat berbeda sesuai spesialisasi serta kebutuhan Anda. Rujukan dan konsultasi profesional sepenuhnya bersifat sukarela serta menghormati keputusan mandiri Anda.",
     catatan_kerahasiaan:
-      "Konsultasi profesional tunduk pada kode etik kerahasiaan profesi; catatan persiapan Anda di VOXERA hanya tersimpan di sesi lokal peramban Anda.",
+      "Konsultasi profesional tunduk pada kode etik kerahasiaan profesi; catatan persiapan Anda di VEXORA hanya tersimpan di sesi lokal peramban Anda.",
     tautan_persiapan_konsultasi: "/prepare?recipient=psychologist&issue=bullying_harassment",
   },
   daftar_langkah_rekomendasi: [
@@ -139,14 +139,14 @@ const CONTOH_PERJALANAN_AKTIF: PerjalananDukungan = {
       kode: "chain_of_command_bypass",
       judul: "Penjaga Keamanan Jalur Pelaporan (Melewati Atasan Langsung)",
       pesan:
-        "Karena situasi ini melibatkan atasan langsung atau risiko retaliasi, VOXERA tidak mengarahkan Anda untuk berhadapan langsung secara tunggal dengan atasan tersebut, melainkan melalui kanal dukungan SDM/HR, perlindungan kerja, atau pendampingan profesional.",
+        "Karena situasi ini melibatkan atasan langsung atau risiko retaliasi, VEXORA tidak mengarahkan Anda untuk berhadapan langsung secara tunggal dengan atasan tersebut, melainkan melalui kanal dukungan SDM/HR, perlindungan kerja, atau pendampingan profesional.",
       lapisan_batas: "workplace_issue_navigation",
     },
     {
       kode: "non_diagnostic_boundary",
       judul: "Batas Etik Non-Diagnostik Psikologi",
       pesan:
-        "VOXERA memberikan navigasi masalah kerja, psikoedukasi, dan persiapan konsultasi. Hasil pemetaan ini bukan diagnosis klinis psikologis maupun psikiatris.",
+        "VEXORA memberikan navigasi masalah kerja, psikoedukasi, dan persiapan konsultasi. Hasil pemetaan ini bukan diagnosis klinis psikologis maupun psikiatris.",
       lapisan_batas: "workplace_issue_navigation",
     },
   ],
@@ -156,7 +156,7 @@ const CONTOH_PERJALANAN_AKTIF: PerjalananDukungan = {
   ],
 };
 
-describe("VOXERA Phase 5 Frontend Suite (@voxera/web)", () => {
+describe("VEXORA Phase 5 Frontend Suite (@voxera/web)", () => {
   let penyimpanan_sesi: PenyimpananSesiTiruan;
 
   beforeEach(() => {
@@ -383,7 +383,7 @@ describe("VOXERA Phase 5 Frontend Suite (@voxera/web)", () => {
         naskah_siap_salin:
           "[Catatan Persiapan Komunikasi - Tujuan: Psikolog Profesional]\n\n1. Pembuka: Saya ingin berkonsultasi...",
         peringatan_privasi_penerima:
-          "Catatan persiapan konsultasi psikolog ini 100% berada di sesi lokal peramban Anda (session_local_only) dan tidak pernah disimpan di database VOXERA.",
+          "Catatan persiapan konsultasi psikolog ini 100% berada di sesi lokal peramban Anda (session_local_only) dan tidak pernah disimpan di database VEXORA.",
         kebijakan_penyimpanan: "session_local_only",
       };
 
@@ -620,7 +620,7 @@ describe("VOXERA Phase 5 Frontend Suite (@voxera/web)", () => {
                   harapan_kerahasiaan: "Dijamin oleh Kode Etik Psikologi Indonesia.",
                   persiapan_sebelum_menghubungi: [
                     "Catat sejak kapan beban emosional dirasakan.",
-                    "Gunakan alat Persiapan Percakapan VOXERA.",
+                    "Gunakan alat Persiapan Percakapan VEXORA.",
                   ],
                 },
               ],

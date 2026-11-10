@@ -103,9 +103,8 @@ export function SupportJourneyView() {
               Mulai Pemetaan Situasi Terlebih Dahulu
             </h1>
             <p className="mx-auto mt-2 max-w-xl text-xs leading-relaxed text-[var(--vx-text-secondary)] sm:text-sm">
-              Halaman Jalur Dukungan menampilkan urutan langkah praktis, penjaga keamanan pelaporan,
-              dukungan psikologis non-klinis, dan rujukan hukum/akademik berdasarkan situasi
-              spesifik yang Anda pilih di Navigator.
+              Pilih kategori situasi terlebih dahulu. Setelah pemetaan, halaman ini akan menampilkan
+              daftar langkah yang bisa Anda tinjau dan tandai sesuai progres.
             </p>
             <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
               <Link
@@ -262,6 +261,9 @@ export function SupportJourneyView() {
             <p className="mt-2 text-xs leading-relaxed text-[var(--vx-text-secondary)] sm:text-sm">
               {perjalanan_aktif.ringkasan_konteks_kerja}
             </p>
+            <p className="mt-2 text-xs text-[var(--vx-text-secondary)]">
+              Tandai setiap langkah saat Anda siap. Progres tersimpan di peramban ini.
+            </p>
 
             <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div className="rounded-xl border border-[var(--vx-border-soft)] bg-[var(--vx-bg-workspace)] p-3.5">
@@ -307,6 +309,11 @@ export function SupportJourneyView() {
               </Link>
             </div>
 
+            <p className="mt-2 text-[11px] text-[var(--vx-text-secondary)]">
+              Progres otomatis tersimpan di peramban. Tombol simpan hanya menyimpan ringkasan
+              terstruktur ke akun opsional.
+            </p>
+
             {pesan_simpan_akun ? (
               <div
                 role="status"
@@ -342,7 +349,7 @@ export function SupportJourneyView() {
                   id="judul-langkah-tindakan"
                   className="mt-0.5 text-lg font-extrabold text-[var(--vx-text-primary)]"
                 >
-                  Urutan Langkah Tindakan yang Direkomendasikan
+                  Pilihan langkah yang bisa Anda coba
                 </h2>
               </div>
               <StatusBadge label={`${langkah_selesai}/${total_langkah} Selesai`} nada="aman" />

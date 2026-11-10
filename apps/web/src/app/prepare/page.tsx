@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { ConversationPrepView } from "@/features/prepare/conversation-prep-view";
 
 export const metadata: Metadata = {
-  title: "Persiapan Percakapan & Situasi Kerja | VOXERA",
+  title: "Persiapan Percakapan & Situasi Kerja | VEXORA",
   description:
     "Ruang penyusunan draf komunikasi 5-prompt untuk Atasan, HR, Psikolog, Konselor, Pendamping Hukum, dan Mentor Karier khusus di sesi peramban lokal.",
 };

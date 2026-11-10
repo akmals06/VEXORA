@@ -41,6 +41,9 @@ export function IssueNavigatorView() {
   const [id_masalah, atur_id_masalah] = useState<IssueId>(
     sesi_lokal.progres_navigator.id_masalah ?? "workload_pressure",
   );
+  const [kategori_dipilih, atur_kategori_dipilih] = useState<boolean>(
+    sesi_lokal.progres_navigator.id_masalah !== null,
+  );
   const [id_masalah_terdisambiguasi, atur_id_masalah_terdisambiguasi] = useState<
     SpecificIssueId | undefined
   >(sesi_lokal.progres_navigator.id_masalah_terdisambiguasi);
@@ -95,6 +98,7 @@ export function IssueNavigatorView() {
     if (valid) {
       const id_terpilih = issue_dari_query as IssueId;
       atur_id_masalah(id_terpilih);
+      atur_kategori_dipilih(true);
       if (id_terpilih !== "unsure") {
         atur_id_masalah_terdisambiguasi(undefined);
         atur_tahap_aktif(2);
@@ -142,6 +146,7 @@ export function IssueNavigatorView() {
 
   const tangani_ganti_domain = (id_baru: IssueId) => {
     atur_id_masalah(id_baru);
+    atur_kategori_dipilih(true);
     atur_pesan_galat(null);
     atur_jawaban_cabang({});
     if (id_baru !== "unsure") {
@@ -160,6 +165,10 @@ export function IssueNavigatorView() {
   };
 
   const tangani_lanjut_ke_tahap_2 = () => {
+    if (!kategori_dipilih) {
+      atur_pesan_galat("Pilih satu situasi terlebih dahulu untuk melanjutkan.");
+      return;
+    }
     if (id_masalah === "unsure" && !id_masalah_terdisambiguasi) {
       atur_pesan_galat(
         "Silakan pilih satu pernyataan situasi yang paling mendekati kondisi Anda pada kartu pemilahan di bawah.",
@@ -280,20 +289,22 @@ export function IssueNavigatorView() {
           Pemetaan Situasi & Kebutuhan Dukungan Kerja
         </h1>
         <p className="mt-1.5 max-w-3xl text-xs leading-relaxed text-[var(--vx-text-secondary)] sm:text-sm">
-          Pilih opsi terstruktur di bawah ini. Kami merancang alur ini tanpa meminta Anda
-          mengetikkan nama atasan, nama perusahaan, atau kronologi sensitif agar privasi Anda tetap
-          terjaga.
+          Jawab pilihan singkat untuk memahami konteks, lalu lihat beberapa langkah yang dapat
+          dipertimbangkan. Anda bisa kembali ke tahap sebelumnya kapan saja; tidak perlu menulis
+          nama atau kronologi sensitif.
         </p>
 
-        {/* Horizontal Step Progress Bar */}
+        <p className="mt-4 text-xs font-bold text-[var(--vx-primary)]" aria-live="polite">
+          Langkah {tahap_aktif} dari 3
+        </p>
         <ol
           aria-label="Tahapan Navigator Masalah"
           className="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-3"
         >
           {[
-            { nomor: 1 as const, judul: "1. Kategori & Pemilahan Masalah" },
-            { nomor: 2 as const, judul: "2. Pertanyaan Konteks Spesifik" },
-            { nomor: 3 as const, judul: "3. Tujuan Langkah & Kebutuhan" },
+            { nomor: 1 as const, judul: "Pilih situasi" },
+            { nomor: 2 as const, judul: "Pahami konteks" },
+            { nomor: 3 as const, judul: "Pilih kebutuhan" },
           ].map((item) => {
             const aktif = tahap_aktif === item.nomor;
             const selesai = tahap_aktif > item.nomor;
@@ -301,12 +312,20 @@ export function IssueNavigatorView() {
               <li key={item.nomor}>
                 <button
                   type="button"
+                  disabled={
+                    item.nomor > 1 &&
+                    (!kategori_dipilih || (id_masalah === "unsure" && !id_masalah_terdisambiguasi))
+                  }
                   onClick={() => {
-                    if (item.nomor === 1 || id_masalah !== "unsure" || id_masalah_terdisambiguasi) {
+                    if (
+                      item.nomor === 1 ||
+                      (kategori_dipilih && (id_masalah !== "unsure" || id_masalah_terdisambiguasi))
+                    ) {
                       atur_tahap_aktif(item.nomor);
                     }
                   }}
-                  className={`flex min-h-11 w-full items-center justify-between rounded-xl border px-3.5 py-2.5 text-left text-xs font-semibold transition ${
+                  aria-current={aktif ? "step" : undefined}
+                  className={`flex min-h-11 w-full items-center justify-between rounded-xl border px-3.5 py-2.5 text-left text-xs font-semibold transition disabled:cursor-not-allowed disabled:opacity-55 ${
                     aktif
                       ? "border-[#0A2552] bg-[#0A2552] text-white shadow-xs"
                       : selesai
@@ -321,6 +340,10 @@ export function IssueNavigatorView() {
             );
           })}
         </ol>
+        <p className="mt-3 text-[11px] text-[var(--vx-text-secondary)]">
+          Pilihan Anda disimpan sementara di sesi peramban ini agar Anda bisa melanjutkan atau
+          kembali mengubah jawaban.
+        </p>
       </section>
 
       {pesan_galat ? (
@@ -346,17 +369,17 @@ export function IssueNavigatorView() {
                   id="judul-tahap-1"
                   className="text-lg font-extrabold text-[var(--vx-text-primary)]"
                 >
-                  Langkah 1: Pilih Kategori Situasi Kerja
+                  Langkah 1: Pilih situasi
                 </h2>
                 <p className="mt-1 text-xs text-[var(--vx-text-secondary)]">
-                  Pilih satu kategori utama. Jika masalah terasa tumpang tindih, pilih{" "}
-                  <strong>Belum Yakin / Masalah Terasa Bercampur</strong>.
+                  Pilih satu kategori yang paling mendekati. Jika beberapa hal terasa bercampur,
+                  pilih <strong>Belum yakin</strong>.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 {DAFTAR_KARTU_MASALAH_BERANDA.map((kartu) => {
-                  const terpilih = id_masalah === kartu.id;
+                  const terpilih = kategori_dipilih && id_masalah === kartu.id;
                   const nama_ikon = dapatkan_ikon_domain_masalah(kartu.id);
                   return (
                     <button
@@ -497,7 +520,7 @@ export function IssueNavigatorView() {
                   onClick={tangani_lanjut_ke_tahap_2}
                   className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0C264F] px-5 py-2.5 text-xs font-semibold text-white transition hover:bg-[#13356B]"
                 >
-                  <span>Lanjut ke Pertanyaan Konteks →</span>
+                  <span>Lanjut: pahami konteks →</span>
                 </button>
               </div>
             </section>
@@ -511,18 +534,18 @@ export function IssueNavigatorView() {
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div>
                   <StatusBadge
-                    label={`Fokus Aktif: ${PETA_LABEL_MASALAH[id_masalah_efektif]}`}
+                    label={`Situasi: ${PETA_LABEL_MASALAH[id_masalah_efektif]}`}
                     nada="utama"
                   />
                   <h2
                     id="judul-tahap-2"
                     className="mt-2 text-lg font-extrabold text-[var(--vx-text-primary)]"
                   >
-                    Langkah 2: Pertanyaan Konteks Spesifik
+                    Langkah 2: Pahami konteks situasi
                   </h2>
                   <p className="mt-1 text-xs text-[var(--vx-text-secondary)]">
-                    Jawab pertanyaan pilihan ganda berikut untuk menyesuaikan rekomendasi langkah
-                    tindak lanjut Anda.
+                    Pilih jawaban yang paling mendekati. Ini membantu menyesuaikan pilihan langkah
+                    yang akan ditampilkan.
                   </p>
                 </div>
               </div>
@@ -583,14 +606,14 @@ export function IssueNavigatorView() {
                   onClick={() => atur_tahap_aktif(1)}
                   className="min-h-11 rounded-full border border-[var(--vx-border-soft)] bg-[var(--vx-surface-secondary)] px-4 py-2 text-xs font-semibold text-[var(--vx-text-primary)] transition hover:bg-[var(--vx-surface-secondary-alt)]"
                 >
-                  ← Kembali ke Kategori
+                  ← Kembali ke situasi
                 </button>
                 <button
                   type="button"
                   onClick={tangani_lanjut_ke_tahap_3}
                   className="min-h-11 rounded-full bg-[#0C264F] px-5 py-2.5 text-xs font-semibold text-white transition hover:bg-[#13356B]"
                 >
-                  Lanjut ke Tujuan Langkah & Kebutuhan →
+                  Lanjut: pilih kebutuhan →
                 </button>
               </div>
             </section>
@@ -607,11 +630,11 @@ export function IssueNavigatorView() {
                   id="judul-tahap-3"
                   className="mt-2 text-lg font-extrabold text-[var(--vx-text-primary)]"
                 >
-                  Langkah 3: Tujuan Utama & Kebutuhan Dukungan Anda
+                  Langkah 3: Pilih bantuan yang Anda butuhkan
                 </h2>
                 <p className="mt-1 text-xs text-[var(--vx-text-secondary)]">
-                  Pilih fokus hasil yang paling membantu Anda hari ini, serta tandai apabila Anda
-                  membutuhkan persiapan konsultasi menuju psikolog atau konselor profesional.
+                  Pilih hal yang paling ingin Anda dapatkan. Bagian dukungan profesional bersifat
+                  opsional dan tidak menghasilkan diagnosis.
                 </p>
               </div>
 
@@ -701,7 +724,7 @@ export function IssueNavigatorView() {
                   onClick={() => atur_tahap_aktif(2)}
                   className="min-h-11 rounded-full border border-[var(--vx-border-soft)] bg-[var(--vx-surface-secondary)] px-4 py-2 text-xs font-semibold text-[var(--vx-text-primary)] transition hover:bg-[var(--vx-surface-secondary-alt)]"
                 >
-                  ← Kembali ke Pertanyaan Konteks
+                  ← Kembali ke konteks
                 </button>
                 <button
                   type="button"
@@ -709,9 +732,7 @@ export function IssueNavigatorView() {
                   onClick={() => void tangani_kirim_evaluasi()}
                   className="min-h-11 rounded-full bg-[#0C264F] px-6 py-2.5 text-xs font-semibold text-white shadow-xs transition hover:bg-[#13356B] disabled:opacity-60"
                 >
-                  {sedang_mengevaluasi
-                    ? "Menyusun Jalur Dukungan..."
-                    : "Evaluasi & Tampilkan Jalur Dukungan →"}
+                  {sedang_mengevaluasi ? "Menyusun Jalur Dukungan..." : "Lihat pilihan langkah →"}
                 </button>
               </div>
             </section>
@@ -731,9 +752,9 @@ export function IssueNavigatorView() {
 
             <dl className="mt-3.5 space-y-2.5 text-xs">
               <div className="rounded-xl bg-[var(--vx-bg-workspace)] p-3">
-                <dt className="font-semibold text-[var(--vx-text-secondary)]">Kategori Dipilih</dt>
+                <dt className="font-semibold text-[var(--vx-text-secondary)]">Situasi dipilih</dt>
                 <dd className="mt-0.5 font-bold text-[var(--vx-text-primary)]">
-                  {PETA_LABEL_MASALAH[id_masalah_efektif]}
+                  {kategori_dipilih ? PETA_LABEL_MASALAH[id_masalah_efektif] : "Belum dipilih"}
                 </dd>
               </div>
               <div className="rounded-xl bg-[var(--vx-bg-workspace)] p-3">
@@ -769,8 +790,7 @@ export function IssueNavigatorView() {
               </h2>
             </div>
             <p className="mt-2.5 text-xs leading-relaxed text-[var(--vx-text-secondary)]">
-              Pilihan Anda disimpan sementara di memori sesi peramban lokal (
-              <code>voxera_session_v1</code>) dan tidak pernah diteruskan ke manajemen atau HR
+              Jawaban disimpan sementara di peramban ini. Jawaban tidak dikirim ke atasan atau HR
               perusahaan.
             </p>
           </div>

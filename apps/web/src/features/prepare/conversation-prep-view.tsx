@@ -144,12 +144,12 @@ export function ConversationPrepView() {
           <StatusBadge label="Khusus Sesi Peramban (Tidak Disimpan ke Database)" nada="aman" />
         </div>
         <h1 className="mt-3 text-xl font-extrabold tracking-tight text-[var(--vx-text-primary)] sm:text-2xl">
-          Persiapan Percakapan & Konsultasi Terstruktur
+          Siapkan poin percakapan
         </h1>
         <p className="mt-1.5 max-w-3xl text-xs leading-relaxed text-[var(--vx-text-secondary)] sm:text-sm">
-          Susun poin komunikasi yang tenang, objektif, dan terfokus sebelum berbicara dengan
-          Manajer, HR, Psikolog, Konselor, Pendamping Hukum, atau Mentor Karier. Jawaban teks Anda
-          pada halaman ini <strong>tidak pernah disimpan ke database server</strong>.
+          Pilih siapa yang akan diajak bicara, lalu isi lima panduan singkat. Anda akan mendapat
+          draf yang bisa disalin atau dicetak. Jawaban teks dan draf{" "}
+          <strong>tidak disimpan ke database server</strong>.
         </p>
       </section>
 
@@ -159,7 +159,7 @@ export function ConversationPrepView() {
         <aside className="space-y-4 lg:col-span-3">
           <section className="rounded-[20px] border border-[var(--vx-border-soft)] bg-[var(--vx-surface-primary)] p-4 shadow-[var(--vx-shadow-card)]">
             <h2 className="text-xs font-bold tracking-wider text-[var(--vx-primary)] uppercase">
-              1. Pilih Pihak Tujuan Diskusi / Konsultasi (6 Penerima)
+              1. Pilih dengan siapa Anda akan bicara
             </h2>
             <div className="mt-3 space-y-2">
               {DAFTAR_PENERIMA_PERCAKAPAN.map((penerima) => {
@@ -199,7 +199,7 @@ export function ConversationPrepView() {
               htmlFor="select-issue-percakapan"
               className="block text-xs font-bold tracking-wider text-[var(--vx-primary)] uppercase"
             >
-              2. Konteks Kategori Situasi Kerja
+              2. Pilih situasi kerja
             </label>
             <select
               id="select-issue-percakapan"
@@ -224,7 +224,7 @@ export function ConversationPrepView() {
           <div className="flex items-center justify-between gap-2">
             <div>
               <h2 className="text-base font-extrabold text-[var(--vx-text-primary)]">
-                3. Susun Poin Terstruktur (5 Panduan Prompt)
+                3. Isi lima panduan singkat
               </h2>
               <p className="mt-0.5 text-xs text-[var(--vx-text-secondary)]">
                 Target: <strong>{PETA_LABEL_PENERIMA[target_penerima]}</strong>
@@ -340,14 +340,16 @@ export function ConversationPrepView() {
           </div>
 
           <div className="pt-2">
+            <p className="mb-2 text-[11px] leading-relaxed text-[var(--vx-text-secondary)]">
+              Draf hasilnya disimpan di sesi peramban ini agar dapat dibuka kembali di perangkat
+              yang sama.
+            </p>
             <button
               type="submit"
               disabled={sedang_menyusun}
               className="min-h-11 w-full rounded-full bg-[#0C264F] px-5 py-2.5 text-xs font-semibold text-white transition hover:bg-[#13356B] disabled:opacity-60"
             >
-              {sedang_menyusun
-                ? "Menyusun Ringkasan Percakapan..."
-                : "Susun & Format Draf Percakapan →"}
+              {sedang_menyusun ? "Menyusun Ringkasan Percakapan..." : "Buat draf percakapan →"}
             </button>
           </div>
         </form>

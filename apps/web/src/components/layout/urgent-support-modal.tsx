@@ -57,7 +57,7 @@ export function UrgentSupportModal({ terbuka, tutup, saat_tutup }: PropertiUrgen
                 Bantuan Darurat & Keselamatan Diri
               </h2>
               <p className="mt-1 text-xs leading-relaxed text-[var(--vx-text-secondary)]">
-                VOXERA adalah alat bantu pemetaan situasi kerja non-klinis dan bukan layanan gawat
+                VEXORA adalah alat bantu pemetaan situasi kerja non-klinis dan bukan layanan gawat
                 darurat. Jika Anda menghadapi ancaman fisik langsung atau krisis keselamatan diri,
                 gunakan kanal resmi berikut sesuai konteks situasi Anda:
               </p>

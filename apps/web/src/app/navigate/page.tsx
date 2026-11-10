@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { IssueNavigatorView } from "@/features/navigator/issue-navigator-view";
 
 export const metadata: Metadata = {
-  title: "Navigator Masalah Kerja | VOXERA",
+  title: "Navigator Masalah Kerja | VEXORA",
   description:
     "Pemetaan masalah kerja langkah demi langkah dengan penjaga keamanan jalur pelaporan dan dukungan non-klinis.",
 };

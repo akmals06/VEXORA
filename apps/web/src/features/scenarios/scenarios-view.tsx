@@ -145,11 +145,11 @@ export function ScenariosView() {
           <StatusBadge label="Refleksi Makna Kerja • Direktori Kanal Resmi" nada="aman" />
         </div>
         <h1 className="mt-3 text-xl font-extrabold tracking-tight text-[var(--vx-text-primary)] sm:text-2xl">
-          Eksplorasi Skenario Situasi Tempat Kerja
+          Belajar lewat contoh situasi kerja
         </h1>
         <p className="mt-1.5 max-w-3xl text-xs leading-relaxed text-[var(--vx-text-secondary)] sm:text-sm">
-          Uji pilihan tindakan secara aman tanpa risiko, evaluasi pertimbangan utama serta implikasi
-          kesejahteraan/hak kerja, dan temukan kanal dukungan yang sesuai mandatnya.
+          Baca contoh situasi, pilih respons, lalu lihat hal yang perlu dipertimbangkan dan pilihan
+          dukungan yang tersedia. Simulasi ini tidak mengubah atau melaporkan kondisi kerja Anda.
         </p>
 
         {/* Segmented Tab Bar */}

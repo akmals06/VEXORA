@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Shared TypeScript and ESLint configuration for VOXERA monorepo packages",
+  "description": "Shared TypeScript and ESLint configuration for VEXORA monorepo packages",
   "exports": {
     "./tsconfig/base.json": "./tsconfig/base.json",
     "./tsconfig/nextjs.json": "./tsconfig/nextjs.json",

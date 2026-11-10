@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "VOXERA Frontend Web Application (Next.js App Router + TypeScript + Tailwind CSS)",
+  "description": "VEXORA Frontend Web Application (Next.js App Router + TypeScript + Tailwind CSS)",
   "scripts": {
     "dev": "next dev --port 3000",
     "build": "next build",

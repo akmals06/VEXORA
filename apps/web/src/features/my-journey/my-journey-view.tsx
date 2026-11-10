@@ -112,7 +112,7 @@ export function MyJourneyView() {
         if (galat.status === 503 || galat.kode === "LAYANAN_DATABASE_TIDAK_TERSEDIA") {
           atur_pesan_auth({
             tipe: "peringatan_db",
-            teks: "Database penyimpanan akun sedang tidak aktif di lingkungan ini (503). Anda tetap dapat menggunakan seluruh fitur VOXERA secara penuh melalui Sesi Peramban Lokal di bawah ini.",
+            teks: "Database penyimpanan akun sedang tidak aktif di lingkungan ini (503). Anda tetap dapat menggunakan seluruh fitur VEXORA secara penuh melalui Sesi Peramban Lokal di bawah ini.",
           });
         } else if (galat.status === 429) {
           const info_tunggu = galat.retry_after_detik
@@ -289,12 +289,12 @@ export function MyJourneyView() {
           />
         </div>
         <h1 className="mt-3 text-xl font-extrabold tracking-tight text-[var(--vx-text-primary)] sm:text-2xl">
-          Perjalanan Saya & Pengaturan Kontinuitas Opsional
+          Progres dan privasi Anda
         </h1>
         <p className="mt-1.5 max-w-3xl text-xs leading-relaxed text-[var(--vx-text-secondary)] sm:text-sm">
-          VOXERA dirancang agar Anda dapat memetakan situasi kerja secara penuh tanpa membuat akun.
-          Jika Anda ingin melanjutkan daftar periksa langkah di perangkat lain, Anda dapat membuat
-          akun alias opsional dengan prinsip minimisasi data yang ketat.
+          Anda bisa memakai semua fitur tanpa akun. Progres tersimpan di peramban pada perangkat
+          ini. Akun opsional memungkinkan ringkasan langkah dilanjutkan di perangkat lain; catatan
+          bebas dan draf percakapan tidak disimpan ke server.
         </p>
       </section>
 

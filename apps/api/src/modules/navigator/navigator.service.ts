@@ -64,7 +64,7 @@ function apakah_memicu_prioritas_hak_dasar(
 }
 
 /**
- * Fungsi murni (pure & deterministic) untuk mengevaluasi jalur dukungan VOXERA
+ * Fungsi murni (pure & deterministic) untuk mengevaluasi jalur dukungan VEXORA
  * dalam 6 tahap terstruktur tanpa skor klinis maupun putusan hukum otomatis.
  */
 export function evaluasi_jalur_dukungan(input: InputNavigator): PerjalananDukungan {
@@ -251,7 +251,7 @@ export function evaluasi_jalur_dukungan(input: InputNavigator): PerjalananDukung
       penjelasan_peran_konselor_psikolog:
         "Konselor dapat membantu pemetaan masalah dan strategi koping adaptif jangka pendek, sedangkan Psikolog dapat memberikan asesmen dan intervensi psikologis profesional sesuai kompetensi, kualifikasi, dan ruang lingkup praktiknya. Fungsi tiap kanal profesional dapat berbeda sesuai spesialisasi serta kebutuhan Anda. Rujukan dan konsultasi profesional sepenuhnya bersifat sukarela serta menghormati keputusan mandiri Anda.",
       catatan_kerahasiaan:
-        "Konsultasi profesional tunduk pada kode etik kerahasiaan profesi; catatan persiapan Anda di VOXERA hanya tersimpan di sesi lokal peramban Anda.",
+        "Konsultasi profesional tunduk pada kode etik kerahasiaan profesi; catatan persiapan Anda di VEXORA hanya tersimpan di sesi lokal peramban Anda.",
       tautan_persiapan_konsultasi: `/prepare?recipient=psychologist&issue=${id_masalah_utama}`,
     },
     daftar_langkah_rekomendasi,

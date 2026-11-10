@@ -27,7 +27,7 @@ export const DAFTAR_ITEM_DIREKTORI_DUKUNGAN: ItemDirektoriDukungan[] = [
       "Dijamin oleh Kode Etik Psikologi Indonesia; hasil sesi tidak dibagikan kepada pemberi kerja tanpa persetujuan tertulis.",
     persiapan_sebelum_menghubungi: [
       "Catat sejak kapan beban emosional dirasakan dan situasi kerja utama yang memicunya.",
-      "Gunakan alat Persiapan Percakapan VOXERA (target: Psikolog) untuk menyusun ringkasan sesi lokal.",
+      "Gunakan alat Persiapan Percakapan VEXORA (target: Psikolog) untuk menyusun ringkasan sesi lokal.",
     ],
   },
   {
@@ -49,7 +49,7 @@ export const DAFTAR_ITEM_DIREKTORI_DUKUNGAN: ItemDirektoriDukungan[] = [
       "Kerahasiaan sesi konseling individu dijaga; pastikan memahami kebijakan privasi penyedia EAP organisasi Anda.",
     persiapan_sebelum_menghubungi: [
       "Identifikasi 1 sampai 2 situasi kerja spesifik yang paling ingin Anda urai dalam sesi konseling.",
-      "Siapkan harapan dukungan jangka pendek menggunakan lembar Persiapan Percakapan VOXERA.",
+      "Siapkan harapan dukungan jangka pendek menggunakan lembar Persiapan Percakapan VEXORA.",
     ],
   },
   {
@@ -114,7 +114,7 @@ export const DAFTAR_ITEM_DIREKTORI_DUKUNGAN: ItemDirektoriDukungan[] = [
       "Konsultasi hukum awal bersifat rahasia antara pekerja dan pendamping hukum.",
     persiapan_sebelum_menghubungi: [
       "Kumpulkan salinan kontrak kerja (PKWT/PKWTT), slip upah, peraturan perusahaan/PKB, dan korespondensi tertulis.",
-      "Susun ringkasan kronologis menggunakan alat Persiapan Percakapan VOXERA (target: Profesional Hukum).",
+      "Susun ringkasan kronologis menggunakan alat Persiapan Percakapan VEXORA (target: Profesional Hukum).",
     ],
   },
   {
@@ -135,7 +135,7 @@ export const DAFTAR_ITEM_DIREKTORI_DUKUNGAN: ItemDirektoriDukungan[] = [
     harapan_kerahasiaan:
       "Diskusi perencanaan karier bersifat pribadi dan berorientasi pada tujuan pertumbuhan Anda.",
     persiapan_sebelum_menghubungi: [
-      "Selesaikan Refleksi Makna Kerja & Adaptasi Digital di VOXERA untuk mengenali prioritas kebutuhan kerja Anda.",
+      "Selesaikan Refleksi Makna Kerja & Adaptasi Digital di VEXORA untuk mengenali prioritas kebutuhan kerja Anda.",
       "Catat keahlian utama yang ingin diperkuat dalam 6 bulan ke depan.",
     ],
   },

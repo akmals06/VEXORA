@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Prisma ORM 7 PostgreSQL schema, configuration, and database client infrastructure for VOXERA",
+  "description": "Prisma ORM 7 PostgreSQL schema, configuration, and database client infrastructure for VEXORA",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {

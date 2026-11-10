@@ -8,7 +8,7 @@ import { LayananAutentikasi } from "../auth/auth.service.js";
 import { RepositoriPerjalananSayaMemori } from "./my-journey.repository.js";
 import { LayananPerjalananSaya } from "./my-journey.service.js";
 
-describe("Modul My Journey (Option B Continuity) — VOXERA Phase 4", () => {
+describe("Modul My Journey (Option B Continuity) — VEXORA Phase 4", () => {
   let repositori_auth: RepositoriAutentikasiMemori;
   let repositori_journey: RepositoriPerjalananSayaMemori;
   let layanan_auth: LayananAutentikasi;

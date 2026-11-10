@@ -2,7 +2,7 @@ import js from "@eslint/js";
 import tseslint from "typescript-eslint";
 
 /**
- * Shared ESLint flat configuration for VOXERA TypeScript packages.
+ * Shared ESLint flat configuration for VEXORA TypeScript packages.
  */
 export function buat_konfigurasi_eslint_dasar(opsi = {}) {
   const { abaikan_tambahan = [] } = opsi;

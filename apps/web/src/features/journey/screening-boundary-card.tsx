@@ -29,7 +29,7 @@ export function KartuBatasSkriningPsikologis({
       </h2>
       <p className="mt-1.5 text-xs leading-relaxed text-[var(--vx-text-secondary)]">
         {batas_skrining?.peringatan_bukan_diagnosis ??
-          "VOXERA membedakan secara tegas antara navigasi masalah kerja, dukungan psikologis non-klinis, dan asesmen klinis oleh profesional berkualifikasi."}
+          "VEXORA membedakan secara tegas antara navigasi masalah kerja, dukungan psikologis non-klinis, dan asesmen klinis oleh profesional berkualifikasi."}
       </p>
       <div className="mt-3 space-y-2 text-xs">
         <div className="rounded-xl bg-[var(--vx-bg-workspace)] p-3">
@@ -44,7 +44,7 @@ export function KartuBatasSkriningPsikologis({
             2. Tanpa Skor Diagnostik atau Label Klinis
           </p>
           <p className="mt-0.5 text-[var(--vx-text-secondary)]">
-            VOXERA tidak pernah mengeluarkan label gangguan klinis atau persentase patologis.
+            VEXORA tidak pernah mengeluarkan label gangguan klinis atau persentase patologis.
           </p>
         </div>
         <div className="rounded-xl bg-[var(--vx-bg-workspace)] p-3">

@@ -49,7 +49,7 @@ export const PERINGATAN_PENJAGA_STANDAR: Record<
     kode: "non_diagnostic_boundary",
     judul: "Batas Etik Non-Diagnostik Psikologi",
     pesan:
-      "VOXERA memberikan navigasi masalah kerja, psikoedukasi, dan persiapan konsultasi. Hasil pemetaan ini bukan diagnosis klinis psikologis maupun psikiatris.",
+      "VEXORA memberikan navigasi masalah kerja, psikoedukasi, dan persiapan konsultasi. Hasil pemetaan ini bukan diagnosis klinis psikologis maupun psikiatris.",
     lapisan_batas: "workplace_issue_navigation",
   },
   non_legal_verdict_boundary: {
@@ -63,7 +63,7 @@ export const PERINGATAN_PENJAGA_STANDAR: Record<
     kode: "chain_of_command_bypass",
     judul: "Penjaga Keamanan Jalur Pelaporan (Melewati Atasan Langsung)",
     pesan:
-      "Karena situasi ini melibatkan atasan langsung atau risiko retaliasi, VOXERA tidak mengarahkan Anda untuk berhadapan langsung secara tunggal dengan atasan tersebut, melainkan melalui kanal dukungan SDM/HR, perlindungan kerja, atau pendampingan profesional.",
+      "Karena situasi ini melibatkan atasan langsung atau risiko retaliasi, VEXORA tidak mengarahkan Anda untuk berhadapan langsung secara tunggal dengan atasan tersebut, melainkan melalui kanal dukungan SDM/HR, perlindungan kerja, atau pendampingan profesional.",
     lapisan_batas: "workplace_issue_navigation",
   },
   hygiene_rights_protection_priority: {
@@ -315,7 +315,7 @@ export const PETA_ATURAN_DOMAIN: Record<SpecificIssueId, DefinisiAturanDomain> =
           judul_langkah:
             "Akses Opsi Dukungan Psikologis atau Pendamping Hukum (Tersedia Secara Sukarela)",
           deskripsi_langkah:
-            "Jika Anda merasa membutuhkan ruang aman pemulihan emosional atau klarifikasi hak hukum, VOXERA menyediakan direktori dan panduan rujukan profesional yang dapat Anda akses sesuai kebutuhan dan keputusan mandiri Anda.",
+            "Jika Anda merasa membutuhkan ruang aman pemulihan emosional atau klarifikasi hak hukum, VEXORA menyediakan direktori dan panduan rujukan profesional yang dapat Anda akses sesuai kebutuhan dan keputusan mandiri Anda.",
           alasan_relevansi:
             "Memberikan akses dukungan pemulihan emosional dan pendampingan hak tanpa memaksakan rujukan otomatis.",
           id_tipe_dukungan: "psychological_support",

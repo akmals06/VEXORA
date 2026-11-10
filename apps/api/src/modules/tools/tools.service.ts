@@ -43,7 +43,7 @@ const PETA_KONFIGURASI_PENERIMA: Record<RecipientType, KonfigurasiPenerimaPercak
       "Menyepakati target baru secara sepihak apabila kapasitas riil belum terbahas.",
     ],
     peringatan_privasi:
-      "Draf ini hanya tersimpan di sesi lokal peramban Anda dan tidak pernah dikirim otomatis ke atasan maupun server VOXERA.",
+      "Draf ini hanya tersimpan di sesi lokal peramban Anda dan tidak pernah dikirim otomatis ke atasan maupun server VEXORA.",
   },
   hr: {
     label_penerima: "Fungsi SDM / HR & Hubungan Industrial",
@@ -77,7 +77,7 @@ const PETA_KONFIGURASI_PENERIMA: Record<RecipientType, KonfigurasiPenerimaPercak
       "Mengharapkan putusan hukum ketenagakerjaan dari sesi konsultasi psikologis.",
     ],
     peringatan_privasi:
-      "Catatan persiapan konsultasi psikolog ini 100% berada di sesi lokal peramban Anda (session_local_only) dan tidak pernah disimpan di database VOXERA.",
+      "Catatan persiapan konsultasi psikolog ini 100% berada di sesi lokal peramban Anda (session_local_only) dan tidak pernah disimpan di database VEXORA.",
   },
   counselor: {
     label_penerima: "Konselor Kesejahteraan Kerja",
@@ -111,7 +111,7 @@ const PETA_KONFIGURASI_PENERIMA: Record<RecipientType, KonfigurasiPenerimaPercak
       "Mengubah atau menambahkan klaim yang tidak sesuai dengan bukti dokumen yang ada.",
     ],
     peringatan_privasi:
-      "Draf persiapan konsultasi hukum ini hanya berada di sesi peramban Anda dan tidak pernah disimpan di database server VOXERA.",
+      "Draf persiapan konsultasi hukum ini hanya berada di sesi peramban Anda dan tidak pernah disimpan di database server VEXORA.",
   },
   career_professional: {
     label_penerima: "Konsultan Karier / Mentor Pengembangan Profesional",

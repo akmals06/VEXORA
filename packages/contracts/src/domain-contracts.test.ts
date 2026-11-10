@@ -14,7 +14,7 @@ import {
   skema_simpan_perjalanan,
 } from "./index.js";
 
-describe("Kontrak Domain VOXERA Hasil Rekonsiliasi Fase 2.5 (@voxera/contracts)", () => {
+describe("Kontrak Domain VEXORA Hasil Rekonsiliasi Fase 2.5 (@voxera/contracts)", () => {
   it("memastikan taksonomi non-klinis memiliki 10 domain masalah, 5 pilar, 9 tipe dukungan, dan 6 penerima", () => {
     expect(daftar_id_masalah).toEqual([
       "workload_pressure",
@@ -147,7 +147,7 @@ describe("Kontrak Domain VOXERA Hasil Rekonsiliasi Fase 2.5 (@voxera/contracts)"
           kode: "non_diagnostic_boundary",
           judul: "Bukan Diagnosis Klinis",
           pesan:
-            "VOXERA menyediakan navigasi dukungan kerja dan bukan alat diagnosis gangguan mental.",
+            "VEXORA menyediakan navigasi dukungan kerja dan bukan alat diagnosis gangguan mental.",
           lapisan_batas: "workplace_issue_navigation",
         },
         {

@@ -92,7 +92,7 @@ async function panggil_endpoint_api<T>(
     throw new GalatApiKlien(
       0,
       "JARINGAN_TIDAK_TERJANGKAU",
-      "Tidak dapat terhubung ke layanan VOXERA API. Pastikan server API berjalan dan koneksi Anda stabil.",
+      "Tidak dapat terhubung ke layanan VEXORA API. Pastikan server API berjalan dan koneksi Anda stabil.",
     );
   }
 
@@ -132,7 +132,7 @@ async function panggil_endpoint_api<T>(
     throw new GalatApiKlien(
       500,
       "KONTRAK_RESPONS_TIDAK_SESUAI",
-      "Format data dari server tidak sesuai dengan kontrak VOXERA.",
+      "Format data dari server tidak sesuai dengan kontrak VEXORA.",
       hasil_validasi.error.flatten(),
     );
   }

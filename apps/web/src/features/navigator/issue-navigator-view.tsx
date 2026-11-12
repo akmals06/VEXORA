@@ -8,7 +8,7 @@ import type {
   SpecificIssueId,
 } from "@voxera/contracts";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { UrgentSupportModal } from "@/components/layout/urgent-support-modal";
 import { dapatkan_ikon_domain_masalah, Icon } from "@/components/ui/icons";
 import { StatusBadge } from "@/components/ui/status-badge";
@@ -37,6 +37,7 @@ export function IssueNavigatorView() {
     useState<ItemKatalogMasalah[]>(KATALOG_FALLBACK_LOKAL);
   const [sedang_memuat_katalog, atur_sedang_memuat_katalog] = useState<boolean>(true);
   const [tahap_aktif, atur_tahap_aktif] = useState<TahapNavigator>(1);
+  const perlu_scroll_ke_langkah_2 = useRef(false);
 
   const [id_masalah, atur_id_masalah] = useState<IssueId>(
     sesi_lokal.progres_navigator.id_masalah ?? "workload_pressure",
@@ -108,6 +109,18 @@ export function IssueNavigatorView() {
     }
   }, [issue_dari_query]);
 
+  useEffect(() => {
+    if (tahap_aktif !== 2 || !perlu_scroll_ke_langkah_2.current) {
+      return;
+    }
+
+    perlu_scroll_ke_langkah_2.current = false;
+    document.getElementById("bagian-langkah-2")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, [tahap_aktif]);
+
   const id_masalah_efektif: IssueId =
     id_masalah === "unsure" && id_masalah_terdisambiguasi ? id_masalah_terdisambiguasi : id_masalah;
 
@@ -177,6 +190,7 @@ export function IssueNavigatorView() {
     }
     atur_pesan_galat(null);
     simpan_progres_sementara(1);
+    perlu_scroll_ke_langkah_2.current = true;
     atur_tahap_aktif(2);
   };
 
@@ -528,8 +542,9 @@ export function IssueNavigatorView() {
 
           {tahap_aktif === 2 ? (
             <section
+              id="bagian-langkah-2"
               aria-labelledby="judul-tahap-2"
-              className="space-y-4 rounded-[20px] border border-[var(--vx-border-soft)] bg-[var(--vx-surface-primary)] p-5 shadow-[var(--vx-shadow-card)] sm:p-6"
+              className="scroll-mt-28 space-y-4 rounded-[20px] border border-[var(--vx-border-soft)] bg-[var(--vx-surface-primary)] p-5 shadow-[var(--vx-shadow-card)] sm:p-6"
             >
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div>

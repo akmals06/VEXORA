@@ -87,7 +87,7 @@ export function AppProviders({ children }: PropertiPenyediaAplikasi) {
   }, []);
 
   useEffect(() => {
-    hapus_sesi_lokal();
+    atur_sesi_lokal(baca_sesi_lokal());
     atur_sudah_dihidrasi(true);
 
     const penangan_perubahan = () => {

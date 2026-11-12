@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Footer } from "@/components/layout/footer";
+import { DashboardSidebar } from "@/components/layout/dashboard-sidebar";
 import { TopNavigation } from "@/components/layout/top-navigation";
 import { WelcomeIntro } from "@/components/layout/welcome-intro";
 
@@ -9,7 +10,7 @@ interface PropertiPageShell {
 
 export function PageShell({ children }: PropertiPageShell) {
   return (
-    <div className="min-h-screen overflow-x-clip bg-[var(--vx-bg-viewport)] px-2 py-3 text-[var(--vx-text-primary)] sm:px-4 sm:py-5 lg:px-6">
+    <div className="min-h-screen bg-[var(--vx-bg-viewport)] px-0 py-0 text-[var(--vx-text-primary)] sm:px-4 sm:py-4 lg:px-6">
       <WelcomeIntro />
       <a
         href="#konten-utama"
@@ -18,14 +19,22 @@ export function PageShell({ children }: PropertiPageShell) {
         Lewati ke konten utama
       </a>
 
-      <div className="mx-auto flex min-h-[calc(100vh-1.5rem)] w-full max-w-[1380px] flex-col gap-4 sm:min-h-[calc(100vh-2.5rem)] sm:gap-5">
-        <div className="vx-navbar-editorial sticky top-3 z-50 w-full rounded-2xl border px-3 py-3 sm:top-5 sm:px-5 sm:py-4 lg:px-6">
+      <div className="sticky top-0 z-50 border-b border-[var(--vx-border-soft)] bg-[var(--vx-bg-viewport)]">
+        <div className="mx-auto w-full max-w-[1600px] px-4 py-3 sm:px-5 lg:px-7">
           <TopNavigation />
         </div>
+      </div>
 
-        <main id="konten-utama" className="min-w-0 flex-1 p-3.5 sm:p-5 lg:p-6">
-          {children}
-        </main>
+      <div className="mx-auto flex min-h-screen w-full max-w-[1600px] flex-col sm:min-h-[calc(100vh-2rem)]">
+        <div className="flex min-h-0 flex-1 gap-0 pt-0 sm:gap-4 sm:pt-4 lg:gap-5">
+          <DashboardSidebar />
+          <main
+            id="konten-utama"
+            className="min-w-0 flex-1 px-3 py-4 sm:rounded-2xl sm:border sm:border-[var(--vx-border-soft)] sm:bg-[var(--vx-bg-workspace)] sm:p-4 lg:p-6"
+          >
+            {children}
+          </main>
+        </div>
 
         <Footer />
       </div>

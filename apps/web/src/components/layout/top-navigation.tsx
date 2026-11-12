@@ -149,9 +149,9 @@ export function TopNavigation() {
   return (
     <>
       <header>
-        <div className="flex items-center justify-between gap-2 sm:gap-4">
+        <div className="relative grid grid-cols-[1fr_auto_1fr] items-center gap-2 md:flex md:justify-between md:gap-4">
           {/* Left: VEXORA Wordmark */}
-          <div className="flex items-center gap-3">
+          <div className="col-start-2 flex items-center justify-self-center gap-3 text-center md:col-auto md:justify-self-auto md:text-left">
             <Link
               href="/"
               className="group inline-flex min-h-11 items-center gap-2.5 rounded-xl px-1.5 py-1 focus:outline-none"
@@ -170,138 +170,149 @@ export function TopNavigation() {
             </Link>
           </div>
 
-          <nav
-            aria-label="Navigasi utama"
-            className="hidden min-w-0 flex-1 items-center justify-center gap-0.5 xl:flex"
-          >
-            {DAFTAR_TAUTAN_NAVIGASI.map((tautan) => {
-              const aktif =
-                tautan.href === "/" ? pathname === "/" : pathname.startsWith(tautan.href);
-              return (
-                <Link
-                  key={tautan.href}
-                  href={tautan.href}
-                  aria-current={aktif ? "page" : undefined}
-                  className={`inline-flex min-h-10 shrink-0 items-center gap-1.5 rounded-xl px-2.5 text-xs font-semibold transition 2xl:px-3 2xl:text-sm ${
-                    aktif
-                      ? "bg-[#E9F0FA] text-[#0A2552]"
-                      : "text-[var(--vx-text-secondary)] hover:bg-[var(--vx-surface-secondary)] hover:text-[var(--vx-text-primary)]"
-                  }`}
-                >
-                  <Icon name={tautan.ikon} size={15} />
-                  <span>{tautan.label_topbar}</span>
-                </Link>
-              );
-            })}
-          </nav>
+          <div className="hidden min-w-0 flex-1 items-center gap-3 pl-5 text-xs font-medium text-[var(--vx-text-secondary)] md:flex">
+            <span className="h-7 w-px bg-[var(--vx-border-soft)]" />
+            <span>Workplace Support &amp; Empowerment</span>
+          </div>
 
-          {/* Hamburger menu on every screen size */}
-          <div ref={wadah_menu_ref} className="relative">
+          <div className="col-start-3 flex items-center justify-self-end gap-2 md:ml-auto md:justify-self-auto">
             <button
               type="button"
-              onClick={() => atur_menu_seluler_terbuka((sebelumnya) => !sebelumnya)}
-              aria-expanded={menu_seluler_terbuka}
-              aria-controls="panel-navigasi-seluler"
-              aria-label={menu_seluler_terbuka ? "Tutup menu" : "Buka menu"}
-              className="inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-xl bg-[#0A2552] px-3.5 text-white transition hover:bg-[#13356B]"
+              onClick={() => atur_modal_darurat_terbuka(true)}
+              className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-rose-200 bg-rose-50 px-2.5 text-xs font-bold text-rose-700 transition hover:bg-rose-100 dark:border-rose-900 dark:bg-rose-950/40 dark:text-rose-200 sm:px-3"
             >
-              <Icon name={menu_seluler_terbuka ? "close" : "menu"} size={18} />
-              <span className="hidden text-sm font-semibold sm:inline">Menu</span>
+              <Icon name="alert-triangle" size={15} />
+              <span className="hidden sm:inline">Bantuan Darurat</span>
             </button>
-
-            {menu_seluler_terbuka ? (
-              <nav
-                id="panel-navigasi-seluler"
-                aria-label="Menu utama"
-                className="vx-navbar-editorial absolute right-0 top-14 z-40 w-[min(22rem,calc(100vw-2.5rem))] rounded-2xl border p-3.5 text-[var(--vx-text-primary)] shadow-xl"
+            <button
+              type="button"
+              onClick={() => atur_modal_bersihkan_terbuka(true)}
+              className="hidden min-h-10 items-center gap-2 rounded-xl border border-[var(--vx-border-soft)] bg-[var(--vx-surface-secondary)] px-3 text-xs font-bold text-[var(--vx-text-primary)] transition hover:bg-[var(--vx-surface-secondary-alt)] sm:inline-flex"
+            >
+              <Icon name="trash" size={15} />
+              <span>Bersihkan Sesi</span>
+            </button>
+            {/* Hamburger menu only on phones */}
+            <div
+              ref={wadah_menu_ref}
+              className="absolute left-0 top-1/2 z-10 -translate-y-1/2 md:static md:translate-y-0"
+            >
+              <button
+                type="button"
+                onClick={() => atur_menu_seluler_terbuka((sebelumnya) => !sebelumnya)}
+                aria-expanded={menu_seluler_terbuka}
+                aria-controls="panel-navigasi-seluler"
+                aria-label={menu_seluler_terbuka ? "Tutup menu" : "Buka menu"}
+                className="inline-flex min-h-10 min-w-10 items-center justify-center gap-2 rounded-xl bg-[#0A2552] px-2.5 text-white transition hover:bg-[#13356B] md:hidden"
               >
-                <div className="xl:hidden">
-                  <p className="px-3 pb-2 text-[11px] font-bold uppercase tracking-wider text-[var(--vx-text-secondary)]">
-                    Navigasi
-                  </p>
-                  <div className="grid grid-cols-1 gap-1">
-                    {DAFTAR_TAUTAN_NAVIGASI.map((tautan) => {
-                      const aktif =
-                        tautan.href === "/" ? pathname === "/" : pathname.startsWith(tautan.href);
-                      return (
-                        <Link
-                          key={tautan.href}
-                          href={tautan.href}
-                          aria-current={aktif ? "page" : undefined}
-                          onClick={() => atur_menu_seluler_terbuka(false)}
-                          className={`flex min-h-11 items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-semibold transition ${
-                            aktif
-                              ? "bg-[#E9F0FA] text-[#0A2552]"
-                              : "text-[var(--vx-text-primary)] hover:bg-[var(--vx-surface-secondary)]"
-                          }`}
-                        >
-                          <Icon name={tautan.ikon} size={17} />
-                          <span>{tautan.label_topbar}</span>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
+                <Icon name={menu_seluler_terbuka ? "close" : "menu"} size={18} />
+                <span className="hidden text-sm font-semibold sm:inline">Menu</span>
+              </button>
 
-                <div className="mt-3 grid grid-cols-2 gap-2 border-t border-[var(--vx-border-subtle)] pt-3">
-                  <button
-                    type="button"
-                    onClick={ubah_mode_tema}
-                    className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[var(--vx-surface-secondary)] px-3 py-2 text-xs font-semibold text-[var(--vx-text-primary)] hover:bg-[var(--vx-surface-secondary-alt)]"
-                  >
-                    <Icon name={mode_tema === "terang" ? "moon" : "sun"} size={14} />
-                    <span>{mode_tema === "terang" ? "Dark mode" : "Light mode"}</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => atur_modal_bersihkan_terbuka(true)}
-                    className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[var(--vx-surface-secondary)] px-3 py-2 text-xs font-semibold text-[var(--vx-text-primary)] hover:bg-[var(--vx-surface-secondary-alt)]"
-                  >
-                    <Icon name="trash" size={14} />
-                    <span>Bersihkan Sesi Lokal</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => atur_modal_darurat_terbuka(true)}
-                    className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-rose-50 px-3 py-2 text-xs font-semibold text-rose-800 hover:bg-rose-100 dark:bg-rose-950/50 dark:text-rose-200"
-                  >
-                    <Icon name="lifebuoy" size={14} />
-                    <span>Bantuan Darurat</span>
-                  </button>
-                  <div className="flex min-h-11 items-center gap-2 rounded-xl border border-[var(--vx-border-soft)] px-3 py-2 text-xs font-semibold">
-                    <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--vx-surface-secondary-alt)] text-[var(--vx-primary)]">
-                      {inisial_pengguna}
-                    </span>
-                    <span className="min-w-0">
-                      <span className="block truncate">{pengguna?.nama_alias ?? "Sesi Lokal"}</span>
-                      <span className="block text-[10px] font-normal text-[var(--vx-text-secondary)]">
-                        {ada_data_lokal
-                          ? "Progres tersimpan di perangkat ini"
-                          : "Belum ada progres lokal"}
-                      </span>
-                    </span>
+              {menu_seluler_terbuka ? (
+                <nav
+                  id="panel-navigasi-seluler"
+                  aria-label="Menu utama"
+                  className="vx-navbar-editorial absolute left-0 top-14 z-40 w-[min(22rem,calc(100vw-2.5rem))] rounded-2xl border p-3.5 text-[var(--vx-text-primary)] shadow-xl"
+                >
+                  <div className="xl:hidden">
+                    <p className="px-3 pb-2 text-[11px] font-bold uppercase tracking-wider text-[var(--vx-text-secondary)]">
+                      Navigasi
+                    </p>
+                    <div className="grid grid-cols-1 gap-1">
+                      {DAFTAR_TAUTAN_NAVIGASI.map((tautan) => {
+                        const aktif =
+                          tautan.href === "/" ? pathname === "/" : pathname.startsWith(tautan.href);
+                        return (
+                          <Link
+                            key={tautan.href}
+                            href={tautan.href}
+                            aria-current={aktif ? "page" : undefined}
+                            onClick={() => atur_menu_seluler_terbuka(false)}
+                            className={`flex min-h-11 items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-semibold transition ${
+                              aktif
+                                ? "bg-[#E9F0FA] text-[#0A2552]"
+                                : "text-[var(--vx-text-primary)] hover:bg-[var(--vx-surface-secondary)]"
+                            }`}
+                          >
+                            <Icon name={tautan.ikon} size={17} />
+                            <span>{tautan.label_topbar}</span>
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
-                  {status_autentikasi === "terautentikasi" && pengguna ? (
+
+                  <div className="mt-3 grid grid-cols-2 gap-2 border-t border-[var(--vx-border-subtle)] pt-3">
                     <button
                       type="button"
-                      onClick={() => void tangani_keluar_cepat()}
-                      className="col-span-2 inline-flex min-h-10 items-center justify-between rounded-xl border border-[var(--vx-border-soft)] px-3 py-2 text-xs font-semibold hover:bg-[var(--vx-surface-secondary)]"
+                      onClick={ubah_mode_tema}
+                      className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[var(--vx-surface-secondary)] px-3 py-2 text-xs font-semibold text-[var(--vx-text-primary)] hover:bg-[var(--vx-surface-secondary-alt)]"
                     >
-                      <span>Keluar Akun</span>
-                      <Icon name="logout" size={14} />
+                      <Icon name={mode_tema === "terang" ? "moon" : "sun"} size={14} />
+                      <span>{mode_tema === "terang" ? "Dark mode" : "Light mode"}</span>
                     </button>
-                  ) : null}
-                  <Link
-                    href={href_cta_utama}
-                    onClick={() => atur_menu_seluler_terbuka(false)}
-                    className="col-span-2 inline-flex min-h-11 items-center justify-between rounded-xl bg-[#0C264F] px-3.5 py-2 text-xs font-semibold text-white hover:bg-[#13356B]"
-                  >
-                    <span>{label_cta_utama}</span>
-                    <Icon name="arrow-up-right" size={15} />
-                  </Link>
-                </div>
-              </nav>
-            ) : null}
+                    <button
+                      type="button"
+                      onClick={() => atur_modal_bersihkan_terbuka(true)}
+                      className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[var(--vx-surface-secondary)] px-3 py-2 text-xs font-semibold text-[var(--vx-text-primary)] hover:bg-[var(--vx-surface-secondary-alt)]"
+                    >
+                      <Icon name="trash" size={14} />
+                      <span>Bersihkan Sesi Lokal</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => atur_modal_darurat_terbuka(true)}
+                      className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-rose-50 px-3 py-2 text-xs font-semibold text-rose-800 hover:bg-rose-100 dark:bg-rose-950/50 dark:text-rose-200"
+                    >
+                      <Icon name="lifebuoy" size={14} />
+                      <span>Bantuan Darurat</span>
+                    </button>
+                    <div className="flex min-h-11 items-center gap-2 rounded-xl border border-[var(--vx-border-soft)] px-3 py-2 text-xs font-semibold">
+                      <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--vx-surface-secondary-alt)] text-[var(--vx-primary)]">
+                        {inisial_pengguna}
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block truncate">
+                          {pengguna?.nama_alias ?? "Sesi Lokal"}
+                        </span>
+                        <span className="block text-[10px] font-normal text-[var(--vx-text-secondary)]">
+                          {ada_data_lokal
+                            ? "Progres tersimpan di perangkat ini"
+                            : "Belum ada progres lokal"}
+                        </span>
+                      </span>
+                    </div>
+                    {status_autentikasi === "terautentikasi" && pengguna ? (
+                      <button
+                        type="button"
+                        onClick={() => void tangani_keluar_cepat()}
+                        className="col-span-2 inline-flex min-h-10 items-center justify-between rounded-xl border border-[var(--vx-border-soft)] px-3 py-2 text-xs font-semibold hover:bg-[var(--vx-surface-secondary)]"
+                      >
+                        <span>Keluar Akun</span>
+                        <Icon name="logout" size={14} />
+                      </button>
+                    ) : null}
+                    <Link
+                      href={href_cta_utama}
+                      onClick={() => atur_menu_seluler_terbuka(false)}
+                      className="col-span-2 inline-flex min-h-11 items-center justify-between rounded-xl bg-[#0C264F] px-3.5 py-2 text-xs font-semibold text-white hover:bg-[#13356B]"
+                    >
+                      <span>{label_cta_utama}</span>
+                      <Icon name="arrow-up-right" size={15} />
+                    </Link>
+                  </div>
+                </nav>
+              ) : null}
+            </div>
+            <Link
+              href="/my-journey"
+              aria-label="Akun dan progres saya"
+              title={pengguna?.nama_alias ?? "Akun dan progres saya"}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--vx-border-soft)] bg-[var(--vx-surface-secondary)] text-xs font-extrabold text-[var(--vx-primary)] transition hover:bg-[var(--vx-surface-secondary-alt)]"
+            >
+              {pengguna ? inisial_pengguna : <Icon name="user" size={17} />}
+            </Link>
           </div>
         </div>
 

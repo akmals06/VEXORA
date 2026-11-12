@@ -1,28 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
-const KUNCI_INTRO_DILIHAT = "voxera-intro-seen";
+import { useState } from "react";
 
 export function WelcomeIntro() {
   const [terbuka, atur_terbuka] = useState(true);
 
-  useEffect(() => {
-    try {
-      if (window.sessionStorage.getItem(KUNCI_INTRO_DILIHAT) === "true") {
-        atur_terbuka(false);
-      }
-    } catch {
-      // Intro tetap bisa ditutup saat penyimpanan peramban tidak tersedia.
-    }
-  }, []);
-
   const masuk_ke_web = () => {
-    try {
-      window.sessionStorage.setItem(KUNCI_INTRO_DILIHAT, "true");
-    } catch {
-      // Lanjutkan tanpa menyimpan preferensi sesi.
-    }
     atur_terbuka(false);
   };
 

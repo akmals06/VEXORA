@@ -1,17 +1,45 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { UrgentSupportModal } from "@/components/layout/urgent-support-modal";
 import { Icon } from "@/components/ui/icons";
 import { SaveBoundaryCard } from "@/components/ui/save-boundary-card";
 import { StatusBadge } from "@/components/ui/status-badge";
 import {
+  DAFTAR_KARTU_MASALAH_BERANDA,
   DAFTAR_PILAR_PRODUK,
   PETA_LABEL_KELAS_HASIL,
   PETA_LABEL_MASALAH,
 } from "@/lib/taxonomy-labels";
 import { gunakan_konteks_aplikasi } from "@/providers/app-providers";
+
+const IKON_SITUASI = [
+  "briefcase",
+  "users",
+  "alert-triangle",
+  "scale",
+  "layers",
+  "book",
+  "sparkle",
+  "cpu",
+  "heart-handshake",
+  "help-circle",
+] as const;
+
+const AKSEN_SITUASI = [
+  "#EAF3FF text-[#2463A6]",
+  "#F3ECFF text-[#7656B3]",
+  "#FFF0F0 text-[#B54D59]",
+  "#F3F0FF text-[#6C5AB2]",
+  "#EEF5FF text-[#426A9D]",
+  "#EAF8F2 text-[#328265]",
+  "#FFF5E6 text-[#A96E1F]",
+  "#EAF5FF text-[#3176A4]",
+  "#FFF0F4 text-[#B55072]",
+  "#F1F4F8 text-[#61738C]",
+] as const;
 
 export function HomeView() {
   const { sesi_lokal, pengguna, status_autentikasi } = gunakan_konteks_aplikasi();
@@ -22,6 +50,12 @@ export function HomeView() {
   const ada_draf_percakapan =
     draf_percakapan.hasil_draf !== null ||
     draf_percakapan.apa_yang_terjadi_dan_waktu.trim().length > 0;
+  const jumlah_langkah_selesai = Object.values(sesi_lokal.status_langkah_lokal).filter(
+    (status) => status === "selesai",
+  ).length;
+  const total_langkah = perjalanan_aktif?.daftar_langkah_rekomendasi.length ?? 0;
+  const progres_persen =
+    total_langkah > 0 ? Math.round((jumlah_langkah_selesai / total_langkah) * 100) : 0;
 
   const sapaan_pengguna =
     status_autentikasi === "terautentikasi" && pengguna ? `Halo, ${pengguna.nama_alias}.` : "Halo.";
@@ -30,82 +64,187 @@ export function HomeView() {
     <div className="space-y-4 sm:space-y-5">
       <section
         aria-label="Mulai menggunakan VEXORA"
-        className="vx-hero-surface overflow-hidden rounded-[20px] border border-[var(--vx-border-soft)] p-5 shadow-[var(--vx-shadow-card)] sm:p-7 lg:p-9"
+        className="vx-hero-surface overflow-hidden rounded-3xl border border-[var(--vx-border-soft)] p-4 shadow-[var(--vx-shadow-card)] sm:p-6 lg:p-7"
       >
-        <div className="grid gap-7 lg:grid-cols-[minmax(0,1fr)_260px] lg:items-center lg:gap-10">
-          <div className="max-w-3xl">
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(300px,0.85fr)] lg:items-center lg:gap-6">
+          <div className="max-w-3xl py-1">
             <div className="flex flex-wrap items-center gap-2">
-              <StatusBadge label="Mulai dari sini" nada="utama" />
-              <StatusBadge label="Tidak perlu akun" nada="aman" />
+              <StatusBadge label="Selamat datang di VEXORA 👋" nada="utama" />
             </div>
-            <p className="mt-4 text-sm font-bold text-[var(--vx-primary)]">{sapaan_pengguna}</p>
-            <h1 className="mt-1 text-2xl font-extrabold tracking-tight text-[var(--vx-text-primary)] sm:text-3xl sm:leading-tight lg:text-4xl">
-              Apa yang sedang Anda hadapi di tempat kerja?
+            <p className="mt-3 text-sm font-bold text-[var(--vx-primary)]">{sapaan_pengguna}</p>
+            <h1 className="mt-1 max-w-2xl text-3xl font-extrabold tracking-tight text-[var(--vx-text-primary)] sm:text-4xl sm:leading-tight">
+              Rekan dukungan kerja Anda.
             </h1>
-            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[var(--vx-text-secondary)] sm:text-base">
-              Ceritakan situasinya lewat beberapa pilihan singkat. VEXORA membantu Anda memahami
-              opsi dukungan dan menentukan langkah berikutnya.
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-[var(--vx-text-secondary)] sm:text-base">
+              Pahami situasi, jelajahi pilihan dukungan, dan siapkan langkah berikutnya dengan ritme
+              Anda sendiri.
             </p>
-            <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center">
-              <Link
-                href="/navigate"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#0C264F] px-5 py-3 text-sm font-semibold text-white shadow-xs transition hover:bg-[#13356B] sm:justify-start"
-              >
-                <span>Mulai petakan situasi</span>
-                <Icon name="arrow-right" size={15} />
-              </Link>
-              <Link
-                href="/navigate?issue=unsure"
-                className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[var(--vx-border-soft)] bg-[var(--vx-surface-primary)] px-4 py-2.5 text-sm font-semibold text-[var(--vx-text-primary)] transition hover:bg-[var(--vx-surface-secondary)] sm:justify-start"
-              >
-                Saya belum yakin
-              </Link>
-            </div>
-            <p className="mt-3 text-xs leading-relaxed text-[var(--vx-text-secondary)]">
-              Tidak perlu menyebut nama atau menuliskan detail sensitif untuk memulai.
-            </p>
-          </div>
-          <aside className="rounded-2xl border border-[var(--vx-border-subtle)] bg-[var(--vx-surface-primary)]/80 p-4 sm:p-5">
-            <p className="text-xs font-bold tracking-wide text-[var(--vx-primary)] uppercase">
-              Alur singkat
-            </p>
-            <ol className="mt-3 space-y-3">
-              {[
-                "Pilih situasi yang paling mendekati",
-                "Jawab beberapa pertanyaan",
-                "Tinjau opsi dukungan",
-              ].map((langkah, indeks) => (
-                <li
-                  key={langkah}
-                  className="flex items-center gap-3 text-sm font-medium text-[var(--vx-text-primary)]"
-                >
-                  <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--vx-surface-secondary)] text-xs font-bold text-[var(--vx-primary)]">
-                    {indeks + 1}
-                  </span>
-                  {langkah}
-                </li>
-              ))}
-            </ol>
-            <div className="mt-4 border-t border-[var(--vx-border-subtle)] pt-3">
-              <p className="text-xs leading-relaxed text-[var(--vx-text-secondary)]">
-                Catatan Anda tetap tersimpan di peramban ini.
+            <div className="mt-5 rounded-2xl border border-[#C9DDF7] bg-white/75 p-4 sm:p-5">
+              <h2 className="text-lg font-extrabold tracking-tight text-[var(--vx-text-primary)] sm:text-xl">
+                Apa yang sedang Anda hadapi di tempat kerja?
+              </h2>
+              <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-[var(--vx-text-secondary)]">
+                Ceritakan situasinya lewat beberapa pilihan singkat untuk menemukan opsi dukungan
+                yang sesuai.
               </p>
-              <Link
-                href="/my-journey#session-privacy"
-                className="mt-2 inline-flex min-h-10 items-center gap-1 text-xs font-bold text-[var(--vx-primary)] underline-offset-4 hover:underline"
-              >
-                Pelajari privasi Anda <Icon name="arrow-right" size={13} />
-              </Link>
+              <div className="mt-4 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center">
+                <Link
+                  href="/navigate"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#123C78] px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#0C2E61] sm:justify-start"
+                >
+                  <span>Jelajahi situasi</span>
+                  <Icon name="arrow-right" size={15} />
+                </Link>
+                <Link
+                  href="/navigate?issue=unsure"
+                  className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[var(--vx-border-soft)] bg-white px-4 py-2.5 text-sm font-semibold text-[var(--vx-text-primary)] transition hover:bg-[var(--vx-surface-secondary)] sm:justify-start"
+                >
+                  Saya belum yakin
+                </Link>
+              </div>
+              <p className="mt-3 text-xs leading-relaxed text-[var(--vx-text-secondary)]">
+                Tidak perlu menyebut nama atau menuliskan detail sensitif untuk memulai.
+              </p>
             </div>
-            <button
-              type="button"
-              onClick={() => atur_modal_darurat_terbuka(true)}
-              className="mt-3 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-[#FECACA] bg-[#FEE2E2]/80 px-3 py-2 text-sm font-semibold text-[#991B1B] transition hover:bg-[#FEE2E2] dark:border-rose-800 dark:bg-rose-950/60 dark:text-rose-200"
+          </div>
+          <div className="mx-auto w-full max-w-[480px] space-y-3 lg:max-w-none">
+            <div className="flex h-[260px] items-center justify-center overflow-hidden rounded-2xl bg-[#EAF2FD] sm:h-[300px] lg:h-[330px]">
+              <Image
+                src="/images/teamwork-meeting.png"
+                alt="Rekan kerja berdiskusi dan berkolaborasi di kantor"
+                width={2500}
+                height={2500}
+                priority
+                sizes="(max-width: 1024px) 100vw, 480px"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            {perjalanan_aktif ? (
+              <aside className="rounded-2xl border border-[var(--vx-border-soft)] bg-white p-4 shadow-sm">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2.5">
+                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--vx-surface-secondary)] text-[var(--vx-primary)]">
+                      <Icon name="route" size={18} />
+                    </span>
+                    <div>
+                      <p className="text-[11px] font-semibold text-[var(--vx-text-secondary)]">
+                        Perjalanan Anda
+                      </p>
+                      <p className="text-sm font-extrabold text-[var(--vx-text-primary)]">
+                        {perjalanan_aktif.judul_perjalanan}
+                      </p>
+                    </div>
+                  </div>
+                  <Link
+                    href="/journey"
+                    aria-label="Lanjutkan perjalanan"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[var(--vx-surface-secondary)] text-[var(--vx-primary)] hover:bg-[var(--vx-surface-secondary-alt)]"
+                  >
+                    <Icon name="arrow-right" size={16} />
+                  </Link>
+                </div>
+                <div className="mt-3 flex items-center justify-between text-xs text-[var(--vx-text-secondary)]">
+                  <span>
+                    {jumlah_langkah_selesai} dari {total_langkah} langkah selesai
+                  </span>
+                  <span>{progres_persen}%</span>
+                </div>
+                <div className="mt-2 h-2 overflow-hidden rounded-full bg-[var(--vx-surface-secondary)]">
+                  <div
+                    className="h-full rounded-full bg-[#2D75C7] transition-all"
+                    style={{ width: `${progres_persen}%` }}
+                  />
+                </div>
+              </aside>
+            ) : (
+              <Link
+                href="/prepare"
+                className="flex items-center justify-between gap-3 rounded-2xl border border-amber-200 bg-[#FFF8E8] p-4 text-amber-950 transition hover:border-amber-300 hover:bg-[#FFF4D8] dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-100"
+              >
+                <span className="flex items-center gap-2.5">
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/80 text-amber-700 dark:bg-amber-900/50 dark:text-amber-200">
+                    <Icon name="chat" size={17} />
+                  </span>
+                  <span>
+                    <span className="block text-[11px] font-semibold opacity-70">
+                      Langkah berikutnya
+                    </span>
+                    <span className="block text-sm font-extrabold">
+                      {ada_draf_percakapan ? "Lanjutkan draf percakapan" : "Siapkan percakapan"}
+                    </span>
+                  </span>
+                </span>
+                <Icon name="chevron-right" size={16} />
+              </Link>
+            )}
+            <Link
+              href="/my-journey#session-privacy"
+              className="flex items-start gap-3 rounded-2xl border border-[var(--vx-border-soft)] bg-[var(--vx-surface-primary)] p-4 transition hover:border-[#9EBCE2]"
             >
-              <Icon name="lifebuoy" size={15} />
-              Bantuan darurat
-            </button>
-          </aside>
+              <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--vx-surface-secondary)] text-[var(--vx-primary)]">
+                <Icon name="lock" size={17} />
+              </span>
+              <span>
+                <span className="block text-sm font-extrabold text-[var(--vx-text-primary)]">
+                  Privasi Anda
+                </span>
+                <span className="mt-0.5 block text-xs leading-relaxed text-[var(--vx-text-secondary)]">
+                  Catatan pribadi tinggal di peramban ini dan tidak dikirim ke server.
+                </span>
+              </span>
+              <Icon
+                name="arrow-up-right"
+                size={15}
+                className="ml-auto shrink-0 text-[var(--vx-primary)]"
+              />
+            </Link>
+          </div>
+        </div>
+      </section>
+      <section
+        aria-labelledby="judul-pilih-situasi"
+        className="rounded-3xl border border-[var(--vx-border-soft)] bg-[var(--vx-surface-primary)] p-4 shadow-[var(--vx-shadow-card)] sm:p-5"
+      >
+        <div className="flex flex-wrap items-end justify-between gap-2">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-wider text-[var(--vx-primary)]">
+              Mulai dari yang paling relevan
+            </p>
+            <h2
+              id="judul-pilih-situasi"
+              className="mt-1 text-lg font-extrabold text-[var(--vx-text-primary)]"
+            >
+              Pilih situasi kerja
+            </h2>
+          </div>
+          <span className="text-xs text-[var(--vx-text-secondary)]">
+            Anda dapat mengubah pilihan kapan saja
+          </span>
+        </div>
+        <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-5">
+          {DAFTAR_KARTU_MASALAH_BERANDA.map((item, index) => {
+            return (
+              <Link
+                key={item.id}
+                href={`/navigate?issue=${item.id}`}
+                className="group flex min-h-[76px] items-center gap-2.5 rounded-xl border border-[var(--vx-border-subtle)] bg-[var(--vx-surface-primary)] p-3 transition hover:-translate-y-0.5 hover:border-[#9EBCE2] hover:shadow-md"
+              >
+                <span
+                  className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${AKSEN_SITUASI[index]}`}
+                >
+                  <Icon name={IKON_SITUASI[index]} size={17} />
+                </span>
+                <span className="min-w-0 text-xs font-bold leading-snug text-[var(--vx-text-primary)] group-hover:text-[var(--vx-primary)]">
+                  {item.judul}
+                </span>
+                <Icon
+                  name="chevron-right"
+                  size={14}
+                  className="ml-auto text-[var(--vx-text-secondary)]"
+                />
+              </Link>
+            );
+          })}
         </div>
       </section>
       {/* Lanjutkan aktivitas sebelumnya bila ada */}
